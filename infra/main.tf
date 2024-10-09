@@ -79,15 +79,15 @@ resource "aws_lb_listener" "entradaLoadBalancer" {
   count = var.producao ? 1: 0
 }
 
-resource "aws_autoscaling_policy" "escala_Produção" {
+resource "aws_autoscaling_policy" "escala-Producao" {
   name = "terraform-escala"
   autoscaling_group_name = var.nomeGrupo
-  policy_type = "targetTranckingScalig"
+  policy_type = "TargetTrackingScaling"
   target_tracking_configuration {
     predefined_metric_specification {
-      predefined_metric_type = "ASGAvarageCPUUtilization"
+      predefined_metric_type = "ASGAverageCPUUtilization"
     }
     target_value = 50.0
   }
-  count = var.producao ? 1: 0
+  count = var.producao ? 1 : 0
 }
